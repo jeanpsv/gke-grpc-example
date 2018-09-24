@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 service Greeter {
-    rpc Hello (Person) returns (Greeting)
+    rpc Hello (Person) returns (Greeting);
 }
 
 message Person {
