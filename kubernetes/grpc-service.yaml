@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gke-grpc-example
+  namespace: grpc-example
+spec:
+  ports:
+    - name: http2
+      protocol: TCP
+      port: 50051
+      targetPort: http2
+  selector:
+    app: gke-grpc-app
