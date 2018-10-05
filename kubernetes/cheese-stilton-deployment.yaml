@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stilton
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      targetPort: http
+      port: 80
+    - name: https
+      protocol: TCP
+      targetPort: https
+      port: 443
+  selector:
+    app: cheese
+    task: stilton
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: stilton
+  labels:
+    app: cheese
+    task: stilton
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cheese
+      task: stilton
+  template:
+    metadata:
+      labels:
+        app: cheese
+        task: stilton
+        version: v0.0.1
+    spec:
+      containers:
+        - name: cheese
+          image: errm/cheese:stilton
+          ports:
+            - name: http
+              containerPort: 80
+            - name: https
+              containerPort: 443
