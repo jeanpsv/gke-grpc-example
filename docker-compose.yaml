@@ -9,26 +9,26 @@ services:
     ports:
       - "4000:4000"
     environment:
-      - MICROSERVICE_HOST=microservice1
-      - MICROSERVICE_PORT=50051
+      - GREETER_HOST=greeter
+      - GREETER_PORT=50051
     volumes:
       - .:/app
-  microservice1:
+  greeter-service:
     build:
       context: .
-      dockerfile: microservice1/Dockerfile
-    command: ["npm", "run", "server", "--prefix", "microservice1"]
+      dockerfile: greeter-service/Dockerfile
+    command: ["npm", "run", "server", "--prefix", "greeter-service"]
     environment:
-      - MICROSERVICE_PORT=50051
+      - GREETER_PORT=50051
       - MY_NAME=jeanpsv
-  nodejs-client:
+  greeter-client:
     build:
       context: .
-      dockerfile: microservice1/Dockerfile
-    command: ["npm", "run", "client", "--prefix", "microservice1"]
+      dockerfile: greeter-service/Dockerfile
+    command: ["npm", "run", "client", "--prefix", "greeter-service"]
     environment:
-      - MICROSERVICE_HOST=microservice1
-      - MICROSERVICE_PORT=50051
+      - GREETER_HOST=greeter
+      - GREETER_PORT=50051
   client:
     image: therealplato/grpcc-container:latest
     volumes:
