@@ -1,9 +1,0 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: traefik-web-ui
-  namespace: traefik
-spec:
-  backend:
-    serviceName: traefik-web-ui
-    servicePort: http
