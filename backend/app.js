@@ -6,8 +6,8 @@ const protoLoader = require("@grpc/proto-loader")
 const app = express()
 app.use(bodyParser.json())
 
-const host = process.env.MICROSERVICE_HOST
-const port = process.env.MICROSERVICE_PORT
+const host = process.env.GREETER_HOST
+const port = process.env.GREETER_PORT
 
 const protoPath = require("path").join(__dirname, "../", "protobufs")
 const packageDefinition = protoLoader.loadSync(`${protoPath}/greeter.proto`, {

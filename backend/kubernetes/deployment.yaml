@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: backend-deployment
+  name: backend
   namespace: apps
 spec:
   template:
@@ -18,7 +18,7 @@ spec:
             - name: http
               containerPort: 4000
           env:
-            - name: MICROSERVICE_HOST
-              value: "microservice1.service.equipe.ninja"
-            - name: MICROSERVICE_PORT
+            - name: GREETER_HOST
+              value: "greeter.service.equipe.ninja"
+            - name: GREETER_PORT
               value: "80"
