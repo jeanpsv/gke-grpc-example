@@ -1,24 +1,27 @@
 # gke-grpc-example
 Google Kubernetes Engine gRPC Example
 
-### Traefik installation
+### Helm installation
 
-1. kubectl create namespace traefik
-2. kubectl apply -f kubernetes/traefik-clusterrole.yaml
-3. kubectl apply -f kubernetes/traefik-serviceaccount.yaml
-4. kubectl apply -f kubernetes/traefik-clusterrolebinding.yaml
-5. kubectl apply -f kubernetes/traefik-deployment.yaml
-6. kubectl apply -f kubernetes/traefik-service.yaml
-7. kubectl apply -f kubernetes/traefik-webui-service.yaml
+Use that command to install:
+```bash
+$ helm install stable/traefik --name traefik --namespace traefik --values ./helm/values.yaml
+```
+
+and that to update:
+```bash
+$ helm upgrade traefik stable/traefik --values ./helm/values.yaml --wait
+```
 
 ### Application Example
 
-1. kubectl create namespace apps
-2. kubectl apply -f kubernetes/app-cheddar.yaml -n apps
-3. kubectl apply -f kubernetes/app-stiltion.yaml -n apps
-4. kubectl apply -f kubernetes/app-wensleydale.yaml -n apps
-5. kubectl apply -f kubernetes/app-ingress.yaml -n apps
+- kubectl create namespace apps
+- kubectl apply -f kubernetes/cheese-cheddar-deployment.yaml
+- kubectl apply -f kubernetes/cheese-stiltion-deployment.yaml
+- kubectl apply -f kubernetes/cheese-wensleydale-deployment.yaml
+- kubectl apply -f kubernetes/cheese-ingress.yaml
 
 ```bash
 $ curl --header "Host:cheddar.service" ${traefik-external-ip}
 ```
+ps: run `kubectl get svc -n traefik` to see external ip.
