@@ -29,3 +29,7 @@ ps: run `kubectl get svc -n traefik` to see external ip.
 
 ### gRPC application example
 
+```bash
+$ docker-compose up greeter-service backend
+$ docker-compose up greeter-client
+```
