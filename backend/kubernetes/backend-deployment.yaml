@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: apps
+spec:
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: app
+          image: jeanpsv/gke-grpc-example:backend
+          imagePullPolicy: Always
+          command: ["npm", "start", "--prefix", "backend"]
+          ports:
+            - name: http
+              containerPort: 4000
+          env:
+            - name: MICROSERVICE_HOST
+              value: "microservice1.service.equipe.ninja"
+            - name: MICROSERVICE_PORT
+              value: "80"
