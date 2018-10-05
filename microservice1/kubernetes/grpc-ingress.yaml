@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: app-ingress
+  namespace: apps
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/protocol: h2c
+spec:
+  rules:
+    - host: "microservice1.service.equipe.ninja"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: app-service
+              servicePort: http

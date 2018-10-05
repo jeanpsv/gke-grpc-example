@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: apps
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: grpc
+    spec:
+      containers:
+        - name: app
+          image: jeanpsv/gke-grpc-example:microservice1
+          imagePullPolicy: Always
+          command: ["npm", "run", "server", "--prefix", "microservice1"]
+          ports:
+            - name: http
+              containerPort: 50051
+          env:
+            - name: MICROSERVICE_PORT
+              value: "50051"
+            - name: MY_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
