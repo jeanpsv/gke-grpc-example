@@ -9,25 +9,26 @@ services:
     ports:
       - "4000:4000"
     environment:
-      - MICROSERVICE_HOST=server
+      - MICROSERVICE_HOST=microservice1
       - MICROSERVICE_PORT=50051
     volumes:
       - .:/app
-  server:
+  microservice1:
     build:
       context: .
-      dockerfile: nodejs/Dockerfile
-    command: ["npm", "run", "server", "--prefix", "nodejs"]
+      dockerfile: microservice1/Dockerfile
+    command: ["npm", "run", "server", "--prefix", "microservice1"]
     environment:
-      - SERVER_PORT=50051
-  nodejs:
+      - MICROSERVICE_PORT=50051
+      - MY_NAME=jeanpsv
+  nodejs-client:
     build:
       context: .
-      dockerfile: nodejs/Dockerfile
-    command: ["npm", "run", "client", "--prefix", "nodejs"]
+      dockerfile: microservice1/Dockerfile
+    command: ["npm", "run", "client", "--prefix", "microservice1"]
     environment:
-      - SERVER_HOST=grpc.service.equipe.ninja
-      - SERVER_PORT=80
+      - MICROSERVICE_HOST=microservice1
+      - MICROSERVICE_PORT=50051
   client:
     image: therealplato/grpcc-container:latest
     volumes:
