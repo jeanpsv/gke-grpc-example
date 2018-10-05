@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: greeter
+  namespace: apps
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: greeter
+    spec:
+      containers:
+        - name: app
+          image: jeanpsv/gke-grpc-example:greeter-service
+          imagePullPolicy: Always
+          command: ["npm", "run", "server", "--prefix", "greeter"]
+          ports:
+            - name: http
+              containerPort: 50051
+          env:
+            - name: GREETER_PORT
+              value: "50051"
+            - name: MY_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name

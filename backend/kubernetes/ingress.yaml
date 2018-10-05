@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: backend
+  namespace: apps
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: "backend.service.equipe.ninja"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: backend-service
+              servicePort: http

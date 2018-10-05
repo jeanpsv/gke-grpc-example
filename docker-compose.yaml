@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: ["npm", "start", "--prefix", "backend"]
+    ports:
+      - "4000:4000"
+    environment:
+      - GREETER_HOST=greeter
+      - GREETER_PORT=50051
+    volumes:
+      - .:/app
+  greeter-service:
+    build:
+      context: .
+      dockerfile: greeter-service/Dockerfile
+    command: ["npm", "run", "server", "--prefix", "greeter-service"]
+    environment:
+      - GREETER_PORT=50051
+      - MY_NAME=jeanpsv
+  greeter-client:
+    build:
+      context: .
+      dockerfile: greeter-service/Dockerfile
+    command: ["npm", "run", "client", "--prefix", "greeter-service"]
+    environment:
+      - GREETER_HOST=greeter
+      - GREETER_PORT=50051
+  client:
+    image: therealplato/grpcc-container:latest
+    volumes:
+      - .:/app
