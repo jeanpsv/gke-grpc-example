@@ -12,8 +12,8 @@ const packageDefinition = protoLoader.loadSync(`${protoPath}/greeter.proto`, {
 })
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition)
 
-const host = process.env.MICROSERVICE_HOST
-const port = process.env.MICROSERVICE_PORT
+const host = process.env.GREETER_HOST
+const port = process.env.GREETER_PORT
 
 const GreeterService = new protoDescriptor.greeter.Greeter(`${host}:${port}`, grpc.credentials.createInsecure())
 

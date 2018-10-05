@@ -11,7 +11,7 @@ const protoDescriptor = grpc.loadPackageDefinition(
   })
 )
 
-const port = process.env.MICROSERVICE_PORT
+const port = process.env.GREETER_PORT
 const my_name = process.env.MY_NAME
 
 const server = new grpc.Server()
