@@ -13,7 +13,7 @@ and that to update:
 $ helm upgrade traefik stable/traefik --values ./helm/values.yaml --wait
 ```
 
-### Application Example
+### Application example
 
 - kubectl create namespace apps
 - kubectl apply -f kubernetes/cheese-cheddar-deployment.yaml
@@ -25,3 +25,13 @@ $ helm upgrade traefik stable/traefik --values ./helm/values.yaml --wait
 $ curl --header "Host:cheddar.service" ${traefik-external-ip}
 ```
 ps: run `kubectl get svc -n traefik` to see external ip.
+
+
+### gRPC application example
+
+run a simple gRPC application on your local machine:
+```bash
+$ cd src/elixir
+$ docker-compose up -d server
+$ docker-compose up client
+```

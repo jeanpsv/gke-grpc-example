@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  server:
+    build: .
+    command: ["mix", "grpc.server"]
+    ports:
+      - "50051:50051"
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=50051
+    volumes:
+      - .:/app
+  client:
+    build: .
+    command: ["mix", "run", "priv/client.exs"]
+    environment:
+      - SERVER_HOST=server
+      - SERVER_PORT=50051
+    volumes:
+      - .:/app
