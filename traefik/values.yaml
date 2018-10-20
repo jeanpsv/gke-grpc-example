@@ -249,7 +249,7 @@ acme:
     # existingClaim:
 dashboard:
   enabled: true
-  domain: dashboard.service.equipe.ninja
+  domain: dashboard.service.my.domain
   service: {}
     # annotations:
     #   key: value

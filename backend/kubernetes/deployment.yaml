@@ -19,6 +19,6 @@ spec:
               containerPort: 4000
           env:
             - name: GREETER_HOST
-              value: "greeter.service.equipe.ninja"
+              value: "greeter.service.my.domain"
             - name: GREETER_PORT
               value: "80"

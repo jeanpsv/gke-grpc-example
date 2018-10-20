@@ -8,10 +8,10 @@ metadata:
     ingress.kubernetes.io/protocol: h2c
 spec:
   rules:
-    - host: "greeter.service.equipe.ninja"
+    - host: "greeter.service.my.domain"
       http:
         paths:
           - path: /
             backend:
-              serviceName: app-service
+              serviceName: greeter
               servicePort: http
