@@ -34,7 +34,7 @@ First, set a real domain for `greeter-service` application:
 2. `backend/kubernetes/deployment.yaml` (set GREETER_HOST value)
 
 Now, to the same for `backend` applicaton:
-1.`backend/kubernetes/ingress.yaml` (set host value)
+1. `backend/kubernetes/ingress.yaml` (set host value)
 
 Now, deploy the recipes on kubernetes:
 ```bash
