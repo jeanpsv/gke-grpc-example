@@ -14,7 +14,7 @@ spec:
         - name: app
           image: jeanpsv/gke-grpc-example:greeter-service
           imagePullPolicy: Always
-          command: ["npm", "run", "server", "--prefix", "greeter"]
+          command: ["npm", "run", "server", "--prefix", "greeter-service"]
           ports:
             - name: http
               containerPort: 50051
