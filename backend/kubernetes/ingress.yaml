@@ -7,10 +7,10 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: "backend.service.equipe.ninja"
+    - host: "backend.service.my.domain"
       http:
         paths:
           - path: /
             backend:
-              serviceName: backend-service
+              serviceName: backend
               servicePort: http

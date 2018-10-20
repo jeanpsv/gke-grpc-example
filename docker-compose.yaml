@@ -27,8 +27,8 @@ services:
       dockerfile: greeter-service/Dockerfile
     command: ["npm", "run", "client", "--prefix", "greeter-service"]
     environment:
-      - GREETER_HOST=greeter
-      - GREETER_PORT=50051
+      - GREETER_HOST=greeter.service.my.domain
+      - GREETER_PORT=80
   client:
     image: therealplato/grpcc-container:latest
     volumes:
